@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Smartworking Tracker</title>
+</head>
+<body style="margin:0;padding:0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Orbitron:wght@400;500&family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+.t-light{--bg:#F5F0E8;--bg2:#EDE5D5;--bg3:#E0D5C0;--bord:#C4A882;--bord2:#A08050;--txt:#2C1F0E;--txt2:#6B5030;--txt3:#9A8060;--acc:#8B6914;--acc2:#C9A84C;--uff-bg:#E8F5E8;--uff-txt:#1A4A1A;--uff-brd:#90C890;--sw-bg:#E0ECF8;--sw-txt:#0C3060;--sw-brd:#80B0E0;--fer-bg:#FFF0D0;--fer-txt:#6A4010;--fer-brd:#D0A050;--fest-bg:#F0E8FF;--fest-txt:#3A1A5A;--fest-brd:#B090D0;--wknd-bg:#E0D5C0;--wknd-txt:#6B5030;--warn:#C04010;--done:#2A7A30;--btn-bg:#E0D5C0;--btn-txt:#4A3010;--sw-half:linear-gradient(to bottom,#E0ECF8 50%,#E8F5E8 50%);--fer-half:linear-gradient(to bottom,#FFF0D0 50%,#E8F5E8 50%);--fest-half:linear-gradient(to bottom,#F0E8FF 50%,#E8F5E8 50%);--font:'Georgia',serif;--radius:4px}
+.t-dark{--bg:#1A1A2E;--bg2:#16213E;--bg3:#0F3460;--bord:#334477;--bord2:#4A5A88;--txt:#E0E8FF;--txt2:#9AB0D0;--txt3:#5A7090;--acc:#4A6090;--acc2:#7090C0;--uff-bg:#0D2D1A;--uff-txt:#70C890;--uff-brd:#1A5A30;--sw-bg:#0D1D3A;--sw-txt:#70A8E0;--sw-brd:#1A3A6A;--fer-bg:#2A1A0A;--fer-txt:#C09040;--fer-brd:#5A3A10;--fest-bg:#1A0D2A;--fest-txt:#B080D0;--fest-brd:#3A1A5A;--wknd-bg:#111128;--wknd-txt:#5A7090;--warn:#E05030;--done:#40A050;--btn-bg:#1E2A4A;--btn-txt:#8AAAD0;--sw-half:linear-gradient(to bottom,#0D1D3A 50%,#0D2D1A 50%);--fer-half:linear-gradient(to bottom,#2A1A0A 50%,#0D2D1A 50%);--fest-half:linear-gradient(to bottom,#1A0D2A 50%,#0D2D1A 50%);--font:'Georgia',serif;--radius:4px}
+.t-steampunk{--bg:#2C1F0E;--bg2:#3A2810;--bg3:#4A3318;--bord:#B87333;--bord2:#8B6914;--txt:#E8C96A;--txt2:#9A8060;--txt3:#8B6914;--acc:#B87333;--acc2:#E8C96A;--uff-bg:#1A2E1A;--uff-txt:#7AB87A;--uff-brd:#2A4A2A;--sw-bg:#1A3050;--sw-txt:#8FB8E0;--sw-brd:#3A5A80;--fer-bg:#3A2A0A;--fer-txt:#C9A84C;--fer-brd:#6A5020;--fest-bg:#3A1A4A;--fest-txt:#C9A0DC;--fest-brd:#6A3A7A;--wknd-bg:#1C150A;--wknd-txt:#8B6914;--warn:#C87020;--done:#5A9040;--btn-bg:#4A3318;--btn-txt:#E8C96A;--sw-half:linear-gradient(to bottom,#1A3050 50%,#1A2E1A 50%);--fer-half:linear-gradient(to bottom,#3A2A0A 50%,#1A2E1A 50%);--fest-half:linear-gradient(to bottom,#3A1A4A 50%,#1A2E1A 50%);--font:'IM Fell English',Georgia,serif;--radius:2px}
+.t-cyberpunk{
+  --bg:#0A0A14;--bg2:#0E0E1C;--bg3:#141428;
+  --bord:#7B2FBE;--bord2:#4A1A80;
+  --txt:#E8D5FF;--txt2:#A080CC;--txt3:#6A4A90;
+  --acc:#7B2FBE;--acc2:#C87DFF;
+  --uff-bg:#0A1A10;--uff-txt:#39FF14;--uff-brd:#1A5A20;
+  --sw-bg:#100A1A;--sw-txt:#BF5FFF;--sw-brd:#6A2A9A;
+  --fer-bg:#1A1000;--fer-txt:#FFB700;--fer-brd:#8A6000;
+  --fest-bg:#1A0A0A;--fest-txt:#FF6B6B;--fest-brd:#8A2A2A;
+  --wknd-bg:#05050A;--wknd-txt:#6A4A90;
+  --warn:#FF4444;--done:#39FF14;
+  --btn-bg:#140A20;--btn-txt:#BF5FFF;
+  --sw-half:linear-gradient(to bottom,#100A1A 50%,#0A1A10 50%);
+  --fer-half:linear-gradient(to bottom,#1A1000 50%,#0A1A10 50%);
+  --fest-half:linear-gradient(to bottom,#1A0A0A 50%,#0A1A10 50%);
+  --font:'Orbitron',sans-serif;--radius:3px
+}
+.t-lotr{
+  --bg:#1A1208;--bg2:#231908;--bg3:#2E2210;
+  --bord:#8B7340;--bord2:#5C4A20;
+  --txt:#F0E6C8;--txt2:#C8A96A;--txt3:#8B7340;
+  --acc:#8B7340;--acc2:#D4AF5A;
+  --uff-bg:#122010;--uff-txt:#7EC880;--uff-brd:#2A5020;
+  --sw-bg:#0E1A2A;--sw-txt:#7AAAD0;--sw-brd:#2A4A70;
+  --fer-bg:#2A1A08;--fer-txt:#D4904A;--fer-brd:#7A4A18;
+  --fest-bg:#1A0E08;--fest-txt:#C87050;--fest-brd:#7A3A20;
+  --wknd-bg:#120E06;--wknd-txt:#5C4A20;
+  --warn:#C84020;--done:#4A8A30;
+  --btn-bg:#2E2210;--btn-txt:#D4AF5A;
+  --sw-half:linear-gradient(to bottom,#0E1A2A 50%,#122010 50%);
+  --fer-half:linear-gradient(to bottom,#2A1A08 50%,#122010 50%);
+  --fest-half:linear-gradient(to bottom,#1A0E08 50%,#122010 50%);
+  --font:'Cinzel',Georgia,serif;--radius:2px
+}
+.t-lotr .sp-card{border-width:2px;box-shadow:0 0 18px rgba(180,140,40,0.15),inset 0 0 40px rgba(0,0,0,0.4)}
+.t-lotr .sp-month{font-size:16px;letter-spacing:.12em;color:var(--acc2)}
+.t-lotr .sp-sep{font-style:normal;letter-spacing:.12em;text-transform:uppercase;border-left:3px solid var(--bord);padding-left:8px}
+.t-lotr .sp-met{border-left:2px solid var(--bord)}
+.t-lotr .sp-met .ml{font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.t-lotr .sp-met .mv{color:var(--acc2)}
+.t-lotr .sp-mbtn{letter-spacing:.04em}
+.t-lotr .sp-cd .dn{font-weight:600}
+.t-lotr .sp-tab{font-family:'Cinzel',serif;letter-spacing:.06em}
+.sp-wrap{padding:0}
+.sp-card{background:var(--bg);border:2px solid var(--bord);border-radius:var(--radius);padding:1.25rem;margin-bottom:12px;outline:1px solid var(--bord2);outline-offset:3px;font-family:var(--font)}
+.sp-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin-bottom:1.25rem;border-bottom:1px solid var(--bord2);padding-bottom:10px;gap:8px}
+.sp-left{display:flex;align-items:center;gap:6px;justify-content:flex-start}
+.sp-center{display:flex;align-items:center;gap:8px;justify-content:center}
+.sp-right-box{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.sp-gear{width:16px;height:16px;flex-shrink:0;fill:var(--acc)}
+.t-cyberpunk .sp-gear{display:none}
+.sp-month{font-size:17px;font-weight:400;color:var(--txt);letter-spacing:.05em;white-space:nowrap}
+.t-cyberpunk .sp-month{font-size:14px;font-weight:500;letter-spacing:.1em;color:var(--acc2)}
+.sp-btn{background:var(--btn-bg);border:1px solid var(--bord);border-radius:var(--radius);padding:3px 10px;cursor:pointer;font-size:13px;color:var(--txt);font-family:var(--font)}
+.sp-btn:hover{border-color:var(--acc2);color:var(--acc2)}
+.t-cyberpunk .sp-btn{font-size:12px;padding:5px 12px}
+.theme-select{background:var(--bg2);border:1px solid var(--bord);border-radius:var(--radius);padding:3px 6px;font-size:12px;color:var(--txt);font-family:var(--font);cursor:pointer}
+.theme-select:focus{outline:none;border-color:var(--acc2)}
+.t-cyberpunk .theme-select{font-size:11px;padding:4px 8px}
+.sp-sw-box{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--bord);border-radius:var(--radius);padding:3px 8px}
+.sp-sw-label{font-size:12px;color:var(--txt2);font-style:italic}
+.t-cyberpunk .sp-sw-label{font-style:normal;font-size:12px;letter-spacing:.08em;color:var(--acc2)}
+.sp-input{width:34px;padding:2px;font-size:14px;font-family:var(--font);border:none;background:transparent;color:var(--txt);text-align:right;-moz-appearance:textfield;appearance:textfield}
+.sp-input::-webkit-outer-spin-button,.sp-input::-webkit-inner-spin-button{-webkit-appearance:none;appearance:none}
+.sp-input:focus{outline:none}
+.t-cyberpunk .sp-input{font-size:13px;color:var(--acc2)}
+.sp-sym{font-size:13px;color:var(--txt2)}
+.t-cyberpunk .sp-sym{color:var(--acc2);font-size:12px}
+.sp-sep{font-size:11px;color:var(--txt3);margin:0 0 6px;padding-top:4px;letter-spacing:.08em;font-style:italic}
+.t-cyberpunk .sp-sep{font-style:normal;font-size:11px;letter-spacing:.15em;color:var(--txt3);text-transform:uppercase;border-left:2px solid var(--bord);padding-left:6px}
+.sp-gr4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:8px}
+.sp-gr3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:14px}
+.sp-met{background:var(--bg2);border:1px solid var(--bord2);border-radius:var(--radius);padding:.55rem .5rem;text-align:center}
+.t-cyberpunk .sp-met{border-left:2px solid var(--bord)}
+.sp-met .ml{font-size:10px;color:var(--txt2);margin-bottom:3px;font-style:italic}
+.t-cyberpunk .sp-met .ml{font-style:normal;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3)}
+.sp-met .mv{font-size:19px;font-weight:400;color:var(--txt)}
+.t-cyberpunk .sp-met .mv{font-size:20px;font-weight:500;color:var(--acc2)}
+.sp-met .mv.warn{color:var(--warn)}
+.sp-met .mv.done{color:var(--done)}
+.sp-modes{display:flex;gap:4px;margin-bottom:6px;flex-wrap:wrap}
+.sp-mbtn{flex:1;padding:5px 3px;font-size:11px;border:1px solid var(--bord2);border-radius:var(--radius);cursor:pointer;background:var(--bg3);color:var(--txt2);text-align:center;white-space:nowrap;min-width:52px;font-family:var(--font)}
+.t-cyberpunk .sp-mbtn{font-size:11px;letter-spacing:.04em;padding:7px 3px}
+.sp-mbtn:hover{border-color:var(--bord);color:var(--txt)}
+.sp-mbtn.on-sw{background:var(--sw-bg);color:var(--sw-txt);border-color:var(--sw-brd)}
+.sp-mbtn.on-fer{background:var(--fer-bg);color:var(--fer-txt);border-color:var(--fer-brd)}
+.sp-mbtn.on-fest{background:var(--fest-bg);color:var(--fest-txt);border-color:var(--fest-brd)}
+.sp-mbtn.on-clr{background:var(--bg3);color:var(--warn);border-color:var(--warn)}
+.sp-hint{font-size:11px;color:var(--txt3);margin:0 0 10px;font-style:italic}
+.t-cyberpunk .sp-hint{font-style:normal;font-size:11px;letter-spacing:.04em;color:var(--txt3)}
+.sp-cgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;margin-bottom:10px}
+.sp-ch{text-align:center;font-size:11px;color:var(--txt3);padding:2px 0;letter-spacing:.05em}
+.t-cyberpunk .sp-ch{font-size:11px;letter-spacing:.08em;color:var(--txt2)}
+.sp-cd{text-align:center;padding:4px 1px;border-radius:var(--radius);font-size:12px;line-height:1.2;border:1px solid transparent;min-height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg2);color:var(--txt2);font-family:var(--font)}
+.t-cyberpunk .sp-cd{font-size:12px}
+.sp-cd.click{cursor:pointer}
+.sp-cd.click:hover{border-color:var(--bord)}
+.sp-cd.wknd{background:var(--wknd-bg);color:var(--wknd-txt)}
+.sp-cd.uff{background:var(--uff-bg);color:var(--uff-txt);border-color:var(--uff-brd)}
+.sp-cd.sw-full{background:var(--sw-bg);color:var(--sw-txt);border-color:var(--sw-brd)}
+.sp-cd.fer-full{background:var(--fer-bg);color:var(--fer-txt);border-color:var(--fer-brd)}
+.sp-cd.fest-full{background:var(--fest-bg);color:var(--fest-txt);border-color:var(--fest-brd)}
+.sp-cd.sw-half{background:var(--sw-half);color:var(--sw-txt);border-color:var(--sw-brd)}
+.sp-cd.fer-half{background:var(--fer-half);color:var(--fer-txt);border-color:var(--fer-brd)}
+.sp-cd.fest-half{background:var(--fest-half);color:var(--fest-txt);border-color:var(--fest-brd)}
+.sp-cd .dn{display:block;font-size:14px;font-weight:500}
+.t-cyberpunk .sp-cd .dn{font-size:14px;font-weight:600}
+.sp-cd .dt{display:block;font-size:9px;opacity:.85}
+.t-cyberpunk .sp-cd .dt{font-size:10px}
+.sp-divider{height:1px;background:var(--bord2);margin:10px 0;opacity:.5}
+.t-cyberpunk .sp-divider{background:var(--bord);opacity:.3}
+.sp-leg{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;border-top:1px solid var(--bord2);padding-top:8px}
+.sp-li{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--txt2)}
+.t-cyberpunk .sp-li{font-size:11px;letter-spacing:.03em}
+.sp-ld{width:10px;height:10px;border-radius:1px;flex-shrink:0}
+.mode-label{font-size:12px;color:var(--txt2);margin-bottom:6px;font-style:italic}
+.t-cyberpunk .mode-label{font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
+.sp-wrap * { font-weight: bold !important; }
+@media (min-width:601px) {
+  .sp-month { font-size: 26px !important; }
+  .t-cyberpunk .sp-month { font-size: 24px !important; }
+  .sp-btn, .theme-select { font-size: 18px !important; padding: 6px 12px !important; }
+  .sp-sw-label, .sp-input, .sp-sym { font-size: 20px !important; }
+  .sp-input { width: 50px !important; padding: 4px !important; }
+  .sp-email-input { width: 240px !important; font-size: 16px !important; }
+  .sp-sep { font-size: 18px !important; padding-top: 8px !important; }
+  .sp-met .ml { font-size: 15px !important; margin-bottom: 8px !important; }
+  .sp-met .mv { font-size: 32px !important; }
+  .t-cyberpunk .sp-met .mv { font-size: 32px !important; }
+  .sp-mbtn { font-size: 16px !important; padding: 10px 6px !important; }
+  .sp-hint { font-size: 16px !important; margin-bottom: 15px !important; }
+  .sp-ch { font-size: 18px !important; padding: 6px 0 !important; }
+  .sp-cd { font-size: 16px !important; min-height: 60px !important; padding: 8px 2px !important; }
+  .sp-cd .dn { font-size: 24px !important; }
+  .sp-cd .dt { font-size: 14px !important; }
+  .sp-li { font-size: 18px !important; gap: 8px !important; }
+  .sp-ld { width: 14px !important; height: 14px !important; }
+  .mode-label { font-size: 18px !important; margin-bottom: 12px !important; }
+}
+.sp-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:10px; margin-top:15px; border-top:1px solid var(--bord2); padding-top:15px; }
+.sp-actions .sp-btn { min-width: 140px; }
+.locked-grid { opacity: 0.7; pointer-events: none; }
+
+.sp-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--bord2); padding-bottom: 10px; }
+.sp-tab { padding: 10px 20px; cursor: pointer; border: 1px solid var(--bord); background: var(--bg2); color: var(--txt); border-radius: var(--radius); font-size: 18px; font-weight: bold; }
+.sp-tab.active { background: var(--acc2); color: var(--bg); border-color: var(--acc); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.t-cyberpunk .sp-tab { font-family: 'Orbitron', sans-serif; font-size: 16px; }
+#login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#1A1208;font-family:'Cinzel',Georgia,serif;gap:24px;padding:40px}
+#login-screen h1{color:#D4AF5A;font-size:30px;letter-spacing:.1em;text-align:center}
+#login-screen p{color:#8B7340;font-size:15px;text-align:center;max-width:360px}
+#login-screen .login-box{background:#231908;border:2px solid #8B7340;border-radius:4px;padding:40px 48px;display:flex;flex-direction:column;align-items:center;gap:20px;outline:1px solid #5C4A20;outline-offset:3px}
+#login-screen .login-ring{font-size:52px;margin-bottom:4px}
+.btn-google{display:flex;align-items:center;gap:12px;padding:12px 28px;font-size:16px;background:#D4AF5A;color:#1A1208;border:none;border-radius:4px;cursor:pointer;font-family:'Cinzel',Georgia,serif;font-weight:600;letter-spacing:.05em;transition:background .2s}
+.btn-google:hover{background:#E8C96A}
+.btn-google svg{width:22px;height:22px;flex-shrink:0}
+#topbar{display:none;padding:8px 16px;background:var(--bg2);border-bottom:1px solid var(--bord);font-size:14px;color:var(--txt2);align-items:center;justify-content:space-between;gap:12px}
+#topbar.visible{display:flex}
+#user-avatar{width:28px;height:28px;border-radius:50%;border:1px solid var(--bord);flex-shrink:0}
+#user-info{display:flex;align-items:center;gap:8px;font-family:var(--font)}
+.btn-logout{font-size:12px;padding:3px 12px;background:var(--bg3);border:1px solid var(--bord);color:var(--txt);border-radius:var(--radius);cursor:pointer;font-family:var(--font)}
+.btn-logout:hover{border-color:var(--warn);color:var(--warn)}
+/* tabs wrap */
+.sp-tabs-wrap { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+.sp-tabs { display:flex; gap:10px; border-bottom:2px solid var(--bord2); padding-bottom:10px; margin-bottom:0; }
+.sp-tabs-controls { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.sp-email-box { flex:1; min-width:0; }
+.sp-email-input { width:100%; min-width:0; text-align:left; font-size:16px; }
+/* home filters */
+.home-filters { display:flex; gap:12px; margin-bottom:20px; align-items:flex-end; flex-wrap:wrap; }
+.home-filter-box { flex-direction:column; align-items:flex-start; padding:8px; }
+.home-filter-input { appearance:auto; -webkit-appearance:auto; width:220px; min-width:220px; text-align:center; border:1px solid var(--bord); background:var(--bg); border-radius:var(--radius); padding:4px 8px; cursor:pointer; color:var(--txt); font-family:var(--font); margin-top:5px; font-size:18px !important; }
+
+@media (max-width:600px) {
+  /* reset overflow */
+  html, body { max-width:100vw; overflow-x:hidden; }
+  .sp-card { padding:.75rem; }
+  #root { padding:0; }
+  .sp-wrap { padding:0; }
+
+  /* topbar */
+  #topbar { font-size:12px; padding:6px 10px; flex-wrap:wrap; }
+  #user-email { display:none; }
+  #user-name { max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+  /* tabs */
+  .sp-tabs { gap:6px; }
+  .sp-tab { padding:8px 0 !important; font-size:13px !important; flex:1; text-align:center; justify-content:center; display:flex; align-items:center; }
+  .sp-tabs-controls { width:100%; flex-direction:column; gap:8px; }
+  .sp-email-box { flex:1; min-width:0; width:100%; display:flex; align-items:center; gap:6px; }
+  .sp-email-input { font-size:14px !important; flex:1; min-width:0; width:auto !important; }
+  .theme-select { font-size:13px !important; padding:5px 6px !important; width:100% !important; flex-shrink:0; }
+
+  /* barra nav mese */
+  .sp-top { grid-template-columns:auto 1fr auto !important; gap:4px; padding-bottom:8px; margin-bottom:.75rem; }
+  .sp-left { gap:4px; }
+  .sp-month { font-size:14px !important; letter-spacing:.02em; white-space:nowrap; }
+  .sp-btn { font-size:13px !important; padding:5px 8px !important; }
+  .sp-sw-label { font-size:12px !important; }
+  /* solo i campi numerici piccoli, NON email */
+  #inp-pct, #inp-recupero { font-size:13px !important; width:36px !important; }
+  .sp-sym { font-size:12px !important; }
+  .sp-sw-box { padding:3px 5px; }
+
+  /* sezioni */
+  .sp-sep { font-size:12px !important; padding-top:6px !important; }
+
+  /* metriche */
+  .sp-gr4 { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:5px; }
+  .sp-gr3 { grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:5px; }
+  .sp-met { padding:.45rem .35rem; }
+  .sp-met .ml { font-size:10px !important; margin-bottom:3px !important; }
+  .sp-met .mv { font-size:20px !important; }
+
+  /* modalità */
+  .mode-label { font-size:12px !important; margin-bottom:6px !important; }
+  .sp-modes { display:grid !important; grid-template-columns:repeat(2, minmax(0,1fr)); gap:6px; }
+  .sp-mbtn { font-size:12px !important; padding:10px 4px !important; min-width:0; white-space:normal !important; text-align:center; line-height:1.3; }
+  .sp-hint { font-size:11px !important; margin-bottom:8px !important; }
+
+  /* calendario */
+  .sp-ch { font-size:11px !important; padding:3px 0 !important; }
+  .sp-cgrid { gap:2px; }
+  .sp-cd { font-size:11px !important; min-height:40px !important; padding:3px 1px !important; }
+  .sp-cd .dn { font-size:13px !important; }
+  .sp-cd .dt { font-size:9px !important; }
+
+  /* legenda */
+  .sp-leg { gap:5px; }
+  .sp-li { font-size:11px !important; gap:4px !important; }
+  .sp-ld { width:10px !important; height:10px !important; }
+
+  /* azioni */
+  .sp-actions { gap:6px; padding-top:10px; flex-wrap:wrap; }
+  .sp-actions .sp-btn { flex:1; min-width:120px; font-size:13px !important; padding:8px 6px !important; }
+
+  /* home totali */
+  #home-totals { overflow-x:auto; }
+  #home-totals table { font-size:12px !important; min-width:400px; }
+  #home-totals th, #home-totals td { padding:6px 4px !important; font-size:12px !important; }
+
+  /* filtri home */
+  .home-filters { flex-direction:column; gap:8px; align-items:stretch; }
+  .home-filter-box { width:100%; }
+  .home-filter-input { width:100% !important; font-size:14px !important; }
+  .home-filter-reset { width:100%; font-size:14px !important; padding:10px !important; }
+
+  /* login */
+  #login-screen { padding:20px; }
+  #login-screen .login-box { padding:24px 18px !important; width:100%; max-width:360px; }
+  #login-screen h1 { font-size:20px !important; }
+  .btn-google { padding:10px 16px !important; font-size:14px !important; }
+}
+</style>
+
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-ring">🏠</div>
+    <h1>Smartworking Tracker</h1>
+    <p>One app to track them all.<br>Accedi con il tuo account Google per continuare.</p>
+    <button class="btn-google" onclick="googleLogin()">
+      <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+      Accedi con Google
+    </button>
+  </div>
+</div>
+
+<!-- TOPBAR UTENTE -->
+<div id="topbar">
+  <div id="user-info">
+    <img id="user-avatar" src="" alt="">
+    <span id="user-name"></span>
+    <span style="opacity:.5">|</span>
+    <span id="user-email" style="font-size:12px;opacity:.7"></span>
+  </div>
+  <button class="btn-logout" onclick="googleLogout()">&#8618; Esci</button>
+</div>
+
+<div id="root" class="t-lotr" style="display:none">
+<div class="sp-wrap">
+<div class="sp-card">
+
+  <div class="sp-tabs-wrap">
+    <div class="sp-tabs">
+      <div class="sp-tab active" id="tab-btn-home" onclick="showTab('home')">Home Totali</div>
+      <div class="sp-tab" id="tab-btn-cal" onclick="showTab('cal')">Calendario Mensile</div>
+    </div>
+    <div class="sp-tabs-controls">
+      <div class="sp-sw-box sp-email-box">
+        <span class="sp-sw-label" title="Indirizzo Email a cui inviare">A:</span>
+        <input class="sp-input sp-email-input" type="email" id="inp-email" placeholder="email@esempio.it">
+      </div>
+      <select class="theme-select" id="theme-select" onchange="setTheme(this.value)">
+        <option value="light">Chiaro</option>
+        <option value="dark">Scuro</option>
+        <option value="steampunk">Steampunk</option>
+        <option value="cyberpunk">Cyberpunk</option>
+        <option value="lotr" selected>Shire & Shadow</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="tab-home" class="tab-content active">
+    <div class="sp-card" style="min-height: 500px;">
+      <h2 style="color:var(--txt); margin-bottom:15px; font-family:var(--font);">Riepilogo Totali Annuali</h2>
+      
+      <div class="home-filters">
+        <div class="sp-sw-box home-filter-box">
+          <span class="sp-sw-label">Da:</span>
+          <input type="month" id="filter-start" class="sp-input home-filter-input" onclick="try{this.showPicker();}catch(e){}" onchange="renderHome()">
+        </div>
+        <div class="sp-sw-box home-filter-box">
+          <span class="sp-sw-label">A:</span>
+          <input type="month" id="filter-end" class="sp-input home-filter-input" onclick="try{this.showPicker();}catch(e){}" onchange="renderHome()">
+        </div>
+        <button class="sp-btn home-filter-reset" onclick="resetFilters()">Resetta</button>
+      </div>
+
+      <div id="home-totals" style="font-family:var(--font); overflow-x:auto;"></div>
+      
+      <div style="margin-top:40px;">
+          <h3 style="color:var(--txt); margin-bottom:15px;">Invia Dati Completi</h3>
+
+          <button class="sp-btn" onclick="copyAndMailData()" style="background:var(--done); color:white; border-color:var(--uff-brd); padding: 10px 20px !important; font-size:18px !important;">&#128231; Invia Email</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-cal" class="tab-content">
+  <div class="sp-top">
+    <div class="sp-left">
+    </div>
+    <div class="sp-center">
+      <button class="sp-btn" id="btn-prev">&#8592;</button>
+      <div class="sp-month" id="lbl-month"></div>
+      <button class="sp-btn" id="btn-next">&#8594;</button>
+    </div>
+    <div class="sp-right-box" style="flex-wrap: wrap;">
+      <div class="sp-sw-box">
+        <span class="sp-sw-label" title="Giorni da recuperare">Recupero</span>
+        <input class="sp-input" type="number" id="inp-recupero" min="0" max="31" value="0">
+      </div>
+      <div class="sp-sw-box">
+        <span class="sp-sw-label">SW</span>
+        <input class="sp-input" type="number" id="inp-pct" min="0" max="100" value="0">
+        <span class="sp-sym">%</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sp-sep" id="sep1">&#9654; Computo giorni</div>
+  <div class="sp-gr4">
+    <div class="sp-met"><div class="ml">Giorni mese</div><div class="mv" id="m-cal">—</div></div>
+    <div class="sp-met"><div class="ml">Lavorativi</div><div class="mv" id="m-lav">—</div></div>
+    <div class="sp-met"><div class="ml">Festivit&#224;</div><div class="mv" id="m-fest">—</div></div>
+    <div class="sp-met"><div class="ml">Ferie/Permessi</div><div class="mv" id="m-fer">—</div></div>
+  </div>
+
+  <div class="sp-sep" id="sep2">&#9654; Calcolo smartworking</div>
+  <div class="sp-gr3">
+    <div class="sp-met"><div class="ml">Lavorabili effettivi</div><div class="mv" id="m-eff">—</div></div>
+    <div class="sp-met"><div class="ml">SW assegnati / totale</div><div class="mv" id="m-sw">—</div></div>
+    <div class="sp-met"><div class="ml">SW rimanenti</div><div class="mv" id="m-rem">—</div></div>
+  </div>
+
+  <div class="sp-divider"></div>
+
+  <div style="margin-bottom:8px">
+    <div class="mode-label" id="mode-label">&#9881; Seleziona modalit&#224;:</div>
+    <div class="sp-modes">
+      <div class="sp-mbtn on-sw" id="mb-sw-full" onclick="setMode('sw-full')">SW/malattia intera</div>
+      <div class="sp-mbtn" id="mb-sw-half" onclick="setMode('sw-half')">SW/malattia mezza</div>
+      <div class="sp-mbtn" id="mb-fer-full" onclick="setMode('fer-full')">Ferie intera</div>
+      <div class="sp-mbtn" id="mb-fer-half" onclick="setMode('fer-half')">Ferie mezza</div>
+      <div class="sp-mbtn" id="mb-fest-full" onclick="setMode('fest-full')">Fest. intera</div>
+      <div class="sp-mbtn" id="mb-fest-half" onclick="setMode('fest-half')">Fest. mezza</div>
+      <div class="sp-mbtn" id="mb-clr" onclick="setMode('clr')">Cancella</div>
+    </div>
+    <div class="sp-hint">Clicca un giorno lavorativo per cambiarne lo stato</div>
+  </div>
+
+  <div class="sp-cgrid" id="cal"></div>
+  <div class="sp-leg" id="legend"></div>
+  <div class="sp-actions">
+    <button class="sp-btn" id="btn-lock" onclick="lockData()" style="border-color:var(--done); color:var(--done);">Convalida Dati</button>
+    <button class="sp-btn" id="btn-unlock" onclick="unlockData()" style="display:none; border-color:var(--warn); color:var(--warn);">Sblocca Dati</button>
+    <button class="sp-btn" id="btn-mail" onclick="sendMail()" style="display:none; background:var(--sw-bg); color:var(--sw-txt); border-color:var(--sw-brd);">Invia Email</button>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+var offset=0,mode='sw-full',dayState={},lockedMonths={},monthSettings={},currentTheme='lotr';
+function mk(y,m,d){return y+'_'+m+'_'+d;}
+function isWk(y,m,d){var w=new Date(y,m,d).getDay();return w===0||w===6;}
+var modeMap={'sw-full':['mb-sw-full','on-sw'],'sw-half':['mb-sw-half','on-sw'],'fer-full':['mb-fer-full','on-fer'],'fer-half':['mb-fer-half','on-fer'],'fest-full':['mb-fest-full','on-fest'],'fest-half':['mb-fest-half','on-fest'],'clr':['mb-clr','on-clr']};
+function setMode(m){mode=m;Object.keys(modeMap).forEach(function(k){document.getElementById(modeMap[k][0]).classList.remove('on-sw','on-fer','on-fest','on-clr');});document.getElementById(modeMap[m][0]).classList.add(modeMap[m][1]);}
+function swVal(s){return s==='sw-full'?1:s==='sw-half'?0.5:0;}
+function ferVal(s){return s==='fer-full'?1:s==='fer-half'?0.5:0;}
+function festVal(s){return s==='fest-full'?1:s==='fest-half'?0.5:0;}
+function fmt(n){return n%1===0?String(n):n.toFixed(1);}
+function getPct(){var v=parseFloat(document.getElementById('inp-pct').value);if(isNaN(v)||v<0)return 0;if(v>100)return 100;return v;}
+function getRecupero(){var v=parseFloat(document.getElementById('inp-recupero').value);if(isNaN(v)||v<0)return 0;return v;}
+function calcTarget(raw){var dec=raw-Math.floor(raw);return dec<=0.5?Math.floor(raw):Math.ceil(raw);}
+function setTheme(t){
+  currentTheme=t;
+  document.getElementById('root').className='t-'+t;
+  var s1=document.getElementById('sep1'),s2=document.getElementById('sep2'),ml=document.getElementById('mode-label');
+  if(t==='cyberpunk'){s1.textContent='COMPUTO GIORNI';s2.textContent='CALCOLO SMARTWORKING';ml.textContent='MODALITA SELEZIONE:';}
+  else if(t==='lotr'){s1.innerHTML='&#9670; Computo dei Giorni';s2.innerHTML='&#9670; Il Cammino dello Smartworking';ml.innerHTML='&#9670; Scegli il Destino del Giorno:';}
+  else{s1.innerHTML='&#9654; Computo giorni';s2.innerHTML='&#9654; Calcolo smartworking';ml.innerHTML='&#9881; Seleziona modalit&#224;:';}
+  renderLegend();render();renderHome();
+  if(typeof saveData==='function') saveData();
+}
+function renderLegend(){
+  var items=[['var(--uff-bg)','var(--uff-brd)','Ufficio'],['var(--sw-bg)','var(--sw-brd)','SW/malattia intera'],['var(--sw-half)','var(--sw-brd)','SW/malattia mezza'],['var(--fer-bg)','var(--fer-brd)','Ferie intera'],['var(--fer-half)','var(--fer-brd)','Ferie mezza'],['var(--fest-bg)','var(--fest-brd)','Fest. intera'],['var(--fest-half)','var(--fest-brd)','Fest. mezza']];
+  document.getElementById('legend').innerHTML=items.map(function(i){return '<div class="sp-li"><div class="sp-ld" style="background:'+i[0]+';border:1px solid '+i[1]+'"></div>'+i[2]+'</div>';}).join('');
+}
+function render(){
+  var now=new Date(),base=new Date(now.getFullYear(),now.getMonth()+offset,1);
+  var year=base.getFullYear(),month=base.getMonth(),pct=getPct(),recupero=getRecupero();
+  
+  var isLocked = lockedMonths[getCurrentMonthKey()] === true;
+  document.getElementById('inp-pct').disabled = isLocked;
+  document.getElementById('inp-recupero').disabled = isLocked;
+  var emailInput = document.getElementById('inp-email');
+  if (emailInput) { emailInput.disabled = isLocked; }
+  var bLock = document.getElementById('btn-lock');
+  if (bLock) {
+    bLock.style.display = isLocked ? 'none' : 'inline-block';
+    document.getElementById('btn-unlock').style.display = isLocked ? 'inline-block' : 'none';
+    document.getElementById('btn-mail').style.display = isLocked ? 'inline-block' : 'none';
+  }
+  var calEl = document.getElementById('cal');
+  if (calEl) { if (isLocked) calEl.classList.add('locked-grid'); else calEl.classList.remove('locked-grid'); }
+
+  var MN=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  document.getElementById('lbl-month').textContent=currentTheme==='cyberpunk'?MN[month].toUpperCase()+' '+year:currentTheme==='lotr'?MN[month].toUpperCase()+' '+year:MN[month]+' '+year;
+  var dim=new Date(year,month+1,0).getDate(),fd=(new Date(year,month,1).getDay()+6)%7;
+  var ferCount=0,swCount=0,festCount=0,wkndCount=0;
+  for(var d=1;d<=dim;d++){if(isWk(year,month,d)){wkndCount++;continue;}var s=dayState[mk(year,month,d)];ferCount+=ferVal(s);swCount+=swVal(s);festCount+=festVal(s);}
+  var lavorativi=dim-wkndCount-festCount,lavorabili=lavorativi-ferCount;
+  var swTarget=Math.max(0, calcTarget(lavorabili*pct/100)-recupero),swRem=Math.round((swTarget-swCount)*10)/10;
+  document.getElementById('m-cal').textContent=dim;
+  document.getElementById('m-lav').textContent=fmt(lavorativi);
+  document.getElementById('m-fest').textContent=fmt(festCount);
+  document.getElementById('m-fer').textContent=fmt(ferCount);
+  document.getElementById('m-eff').textContent=fmt(lavorabili);
+  document.getElementById('m-sw').textContent=fmt(swCount)+' / '+swTarget;
+  var el=document.getElementById('m-rem');el.textContent=fmt(swRem);el.className='mv'+(swRem<0?' warn':swRem===0?' done':'');
+  var DN=['Lun','Mar','Mer','Gio','Ven','Sab','Dom'];
+  var h=DN.map(function(x){return '<div class="sp-ch">'+x+'</div>';}).join('');
+  for(var i=0;i<fd;i++) h+='<div class="sp-cd"></div>';
+  for(var d2=1;d2<=dim;d2++){
+    var wk=isWk(year,month,d2),st=dayState[mk(year,month,d2)],cls='sp-cd',tag='';
+    if(wk){cls+=' wknd';}else{cls+=' click';if(st==='sw-full'){cls+=' sw-full';tag='<span class="dt">SW</span>';}else if(st==='sw-half'){cls+=' sw-half';tag='<span class="dt">½SW</span>';}else if(st==='fer-full'){cls+=' fer-full';tag='<span class="dt">F/P</span>';}else if(st==='fer-half'){cls+=' fer-half';tag='<span class="dt">½F/P</span>';}else if(st==='fest-full'){cls+=' fest-full';tag='<span class="dt">fest.</span>';}else if(st==='fest-half'){cls+=' fest-half';tag='<span class="dt">½fest.</span>';}else{cls+=' uff';tag='<span class="dt">uff.</span>';}}
+    h+='<div class="'+cls+'" onclick="toggle('+year+','+month+','+d2+')"><span class="dn">'+d2+'</span>'+tag+'</div>';
+  }
+  document.getElementById('cal').innerHTML=h;
+}
+function toggle(y,m,d){if(isWk(y,m,d))return;if(lockedMonths[y+'_'+m]===true)return;var k=mk(y,m,d);if(mode==='clr'){delete dayState[k];}else if(dayState[k]===mode){delete dayState[k];}else{dayState[k]=mode;}render();if(typeof saveData==='function')saveData();}
+function updateSettingsFromDOM() {
+    var k = getCurrentMonthKey();
+    if (!monthSettings[k]) monthSettings[k] = {};
+    monthSettings[k].pct = parseFloat(document.getElementById('inp-pct').value) || 0;
+    monthSettings[k].recupero = parseFloat(document.getElementById('inp-recupero').value) || 0;
+    var emailEl = document.getElementById('inp-email');
+    if (emailEl) monthSettings['_email'] = emailEl.value;
+    render();
+    if(typeof saveData==='function') saveData();
+}
+function restoreSettingsToDOM() {
+    var k = getCurrentMonthKey();
+    var s = monthSettings[k] || { pct: 0, recupero: 0 };
+    document.getElementById('inp-pct').value = s.pct;
+    document.getElementById('inp-recupero').value = s.recupero;
+    var emailEl = document.getElementById('inp-email');
+    if (emailEl && monthSettings['_email']) emailEl.value = monthSettings['_email'];
+}
+document.getElementById('inp-pct').addEventListener('input',updateSettingsFromDOM);
+document.getElementById('inp-recupero').addEventListener('input',updateSettingsFromDOM);
+var _emailEl = document.getElementById('inp-email');
+if (_emailEl) _emailEl.addEventListener('input', updateSettingsFromDOM);
+document.getElementById('btn-prev').addEventListener('click',function(){offset--;restoreSettingsToDOM();render();});
+document.getElementById('btn-next').addEventListener('click',function(){offset++;restoreSettingsToDOM();render();});
+
+function getCurrentMonthKey() {
+  var now=new Date(),base=new Date(now.getFullYear(),now.getMonth()+offset,1);
+  return base.getFullYear()+'_'+base.getMonth();
+}
+function lockData() {
+  lockedMonths[getCurrentMonthKey()] = true;
+  render();
+  if(typeof saveData==='function') saveData();
+}
+function unlockData() {
+  lockedMonths[getCurrentMonthKey()] = false;
+  render();
+  if(typeof saveData==='function') saveData();
+}
+
+function showTab(t) {
+    var bh = document.getElementById('tab-btn-home');
+    var bc = document.getElementById('tab-btn-cal');
+    var th = document.getElementById('tab-home');
+    var tc = document.getElementById('tab-cal');
+
+    if(bh) bh.classList.remove('active');
+    if(bc) bc.classList.remove('active');
+    if(th) { th.classList.remove('active'); th.style.display = 'none'; }
+    if(tc) { tc.classList.remove('active'); tc.style.display = 'none'; }
+
+    var btn = document.getElementById('tab-btn-'+t);
+    var tab = document.getElementById('tab-'+t);
+
+    if(btn) btn.classList.add('active');
+    if(tab) { tab.classList.add('active'); tab.style.display = 'block'; }
+  if(t === 'home') renderHome();
+}
+
+function renderHome() {
+  var years = new Set();
+  var currY = new Date().getFullYear();
+  years.add(currY);
+  Object.keys(dayState).forEach(function(k){ years.add(parseInt(k.split('_')[0])); });
+  Object.keys(monthSettings).forEach(function(k){ if(k!=='_email') years.add(parseInt(k.split('_')[0])); });
+  var yearList = Array.from(years).filter(function(y){return !isNaN(y);}).sort(function(a,b){ return b-a; });
+
+  var fStart = document.getElementById('filter-start') ? document.getElementById('filter-start').value : '';
+  var fEnd = document.getElementById('filter-end') ? document.getElementById('filter-end').value : '';
+  var minBound = -Infinity, maxBound = Infinity;
+  if(fStart) { var ps = fStart.split('-'); if(ps.length===2) minBound = parseInt(ps[0])*12 + (parseInt(ps[1])-1); }
+  if(fEnd) { var pe = fEnd.split('-'); if(pe.length===2) maxBound = parseInt(pe[0])*12 + (parseInt(pe[1])-1); }
+
+  var rows = [];
+  yearList.forEach(function(y) {
+    var countSwAll=0, countFerAll=0, countFestAll=0, countWkndAll=0, dimAll=0, swSpettanti=0;
+    for(var m=0; m<12; m++) {
+      var absM = y*12+m;
+      if(absM < minBound || absM > maxBound) continue;
+      var dim = new Date(y,m+1,0).getDate();
+      dimAll += dim;
+      var mFer=0, mFest=0, mWknd=0;
+      for(var d=1; d<=dim; d++) {
+        if(isWk(y,m,d)){countWkndAll++;mWknd++;continue;}
+        var ns=dayState[mk(y,m,d)];
+        if(ns){countSwAll+=swVal(ns);var fv=ferVal(ns),fst=festVal(ns);countFerAll+=fv;mFer+=fv;countFestAll+=fst;mFest+=fst;}
+      }
+      var mEff=dim-mWknd-mFest-mFer;
+      var k=y+'_'+m;
+      var mPct=(monthSettings[k]&&typeof monthSettings[k].pct!=='undefined')?monthSettings[k].pct:0;
+      var mRec=(monthSettings[k]&&typeof monthSettings[k].recupero!=='undefined')?monthSettings[k].recupero:0;
+      swSpettanti+=Math.max(0,calcTarget(mEff*mPct/100)-mRec);
+    }
+    if(dimAll>0){
+      var lavAnnuale=dimAll-countWkndAll-countFestAll;
+      var effAnnuale=lavAnnuale-countFerAll;
+      rows.push({y:y,lav:lavAnnuale,fest:countFestAll,fer:countFerAll,eff:effAnnuale,swAss:swSpettanti,swFru:countSwAll});
+    }
+  });
+
+  if(rows.length===0){
+    document.getElementById('home-totals').innerHTML='<p style="color:var(--txt2);padding:20px 0;">Nessun dato nel periodo selezionato.</p>';
+    return;
+  }
+
+  var isMobile = window.innerWidth <= 600;
+  var html = '';
+
+  if(isMobile) {
+    // Card verticali su mobile
+    rows.forEach(function(r){
+      html += '<div style="background:var(--bg2);border:1px solid var(--bord2);border-left:3px solid var(--bord);border-radius:var(--radius);padding:12px;margin-bottom:10px;">';
+      html += '<div style="font-size:18px;font-weight:bold;color:var(--acc2);margin-bottom:10px;">'+r.y+'</div>';
+      var fields = [
+        ['Giorni Lavorativi', r.lav, ''],
+        ['Festività', r.fest, ''],
+        ['Ferie/Permessi', r.fer, 'var(--warn)'],
+        ['Lavorabili Effettivi', r.eff, ''],
+        ['SW Assegnati', r.swAss, ''],
+        ['SW Fruiti', r.swFru, 'var(--done)'],
+      ];
+      fields.forEach(function(f){
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--bord2);">';
+        html += '<span style="font-size:13px;color:var(--txt2);">'+f[0]+'</span>';
+        html += '<span style="font-size:16px;font-weight:bold;color:'+(f[2]||'var(--txt)')+';">'+f[1]+'</span>';
+        html += '</div>';
+      });
+      html += '</div>';
+    });
+  } else {
+    // Tabella su desktop
+    html = '<table style="width:100%;border-collapse:collapse;text-align:center;color:var(--txt);font-size:22px;">';
+    html += '<thead><tr style="border-bottom:2px solid var(--bord2);background:var(--bg2);font-size:20px;">';
+    html += '<th style="padding:12px 8px;">Anno</th>';
+    html += '<th style="padding:12px 8px;">Giorni Lav.</th>';
+    html += '<th style="padding:12px 8px;">Festività</th>';
+    html += '<th style="padding:12px 8px;">Ferie/Perm.</th>';
+    html += '<th style="padding:12px 8px;">Lavorabili Eff.</th>';
+    html += '<th style="padding:12px 8px;">SW Assegnati</th>';
+    html += '<th style="padding:12px 8px;">SW Fruiti</th>';
+    html += '</tr></thead><tbody>';
+    rows.forEach(function(r){
+      html += '<tr style="border-bottom:1px solid var(--bord2);">';
+      html += '<td style="padding:12px 6px;font-weight:bold;color:var(--acc2);">'+r.y+'</td>';
+      html += '<td style="padding:12px 6px;">'+r.lav+'</td>';
+      html += '<td style="padding:12px 6px;">'+r.fest+'</td>';
+      html += '<td style="padding:12px 6px;color:var(--warn);">'+r.fer+'</td>';
+      html += '<td style="padding:12px 6px;">'+r.eff+'</td>';
+      html += '<td style="padding:12px 6px;">'+r.swAss+'</td>';
+      html += '<td style="padding:12px 6px;color:var(--done);">'+r.swFru+'</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+  }
+
+  document.getElementById('home-totals').innerHTML = html;
+}
+
+function copyAndMailData() {
+  var years = new Set();
+  var currY = new Date().getFullYear();
+  years.add(currY);
+  Object.keys(dayState).forEach(function(k){ years.add(parseInt(k.split('_')[0])); });
+  Object.keys(monthSettings).forEach(function(k){ years.add(parseInt(k.split('_')[0])); });
+  var yearList = Array.from(years).sort(function(a,b){ return b-a; });
+
+  var fStart = document.getElementById('filter-start') ? document.getElementById('filter-start').value : '';
+  var fEnd = document.getElementById('filter-end') ? document.getElementById('filter-end').value : '';
+  var minBound = -Infinity, maxBound = Infinity;
+  var periodStr = "Tutto (Senza Limiti)";
+  if (fStart || fEnd) periodStr = (fStart || "Inizio") + " - " + (fEnd || "In corso");
+  if(fStart) { var ps = fStart.split('-'); if(ps.length===2) minBound = parseInt(ps[0])*12 + (parseInt(ps[1])-1); }
+  if(fEnd) { var pe = fEnd.split('-'); if(pe.length===2) maxBound = parseInt(pe[0])*12 + (parseInt(pe[1])-1); }
+
+  var textBody = "Periodo di riferimento: " + periodStr + "\n\n";
+
+  yearList.forEach(function(y) {
+      var countSwAll=0, countFerAll=0, countFestAll=0, countWkndAll=0, dimAll=0;
+      var swSpettanti = 0;
+
+      for(var m=0; m<12; m++) {
+         var absM = y * 12 + m;
+         if(absM < minBound || absM > maxBound) continue;
+
+         var dim = new Date(y,m+1,0).getDate();
+         dimAll += dim;
+
+         var mFer=0, mFest=0, mWknd=0;
+         for(var d=1; d<=dim; d++) {
+             if(isWk(y,m,d)){ countWkndAll++; mWknd++; continue; }
+             var ns = dayState[mk(y,m,d)];
+             if(ns) { 
+                countSwAll += swVal(ns); 
+                var fv=ferVal(ns), fst=festVal(ns);
+                countFerAll += fv; mFer += fv;
+                countFestAll += fst; mFest += fst;
+             }
+         }
+         var mEff = dim - mWknd - mFest - mFer;
+         var k = y+'_'+m;
+         var mPct = (monthSettings[k] && typeof monthSettings[k].pct !== 'undefined') ? monthSettings[k].pct : 0;
+         var mRec = (monthSettings[k] && typeof monthSettings[k].recupero !== 'undefined') ? monthSettings[k].recupero : 0;
+         swSpettanti += Math.max(0, calcTarget(mEff * mPct / 100) - mRec);
+      }
+
+      if (dimAll > 0) {
+          var lavAnnuale = dimAll - countWkndAll - countFestAll;
+          var effAnnuale = lavAnnuale - countFerAll;
+          textBody += "--- Anno " + y + " ---\n";
+          textBody += "Giorni Lavorativi: " + lavAnnuale + "\n";
+          textBody += "Festività: " + countFestAll + "\n";
+          textBody += "Ferie/Permessi: " + countFerAll + "\n";
+          textBody += "Lavorabili Effettivi: " + effAnnuale + "\n";
+          textBody += "SW Assegnati: " + swSpettanti + "\n";
+          textBody += "SW Fruiti: " + countSwAll + "\n\n";
+      }
+  });
+
+  var targetEmail = document.getElementById('inp-email') ? document.getElementById('inp-email').value : '';
+  var subj = encodeURIComponent("Riepilogo Totali SW");
+  var minBody = encodeURIComponent(textBody);
+
+  var btn = document.querySelector('button[onclick="copyAndMailData()"]');
+  if(btn) {
+     var oldHtml = btn.innerHTML;
+     btn.innerText = "Copiato!";
+     setTimeout(function(){ btn.innerHTML = oldHtml; }, 3000);
+  }
+
+  if(navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(textBody).then(function(){
+       window.location.href = "mailto:" + targetEmail + "?subject=" + subj + "&body=" + minBody;
+    });
+  } else {
+     var ta = document.createElement('textarea');
+     ta.value = textBody;
+     document.body.appendChild(ta);
+     ta.select();
+     document.execCommand('copy');
+     document.body.removeChild(ta);
+     window.location.href = "mailto:" + targetEmail + "?subject=" + subj + "&body=" + minBody;
+  }
+}
+
+function sendMail() {
+  var now=new Date(),base=new Date(now.getFullYear(),now.getMonth()+offset,1);
+  var y=base.getFullYear(),m=base.getMonth(),pct=getPct(),recupero=getRecupero();
+  var MN=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  var dim=new Date(y,m+1,0).getDate(),ferCount=0,swCount=0,festCount=0,wkndCount=0;
+  for(var d=1;d<=dim;d++){if(isWk(y,m,d)){wkndCount++;continue;}var s=dayState[mk(y,m,d)];ferCount+=ferVal(s);swCount+=swVal(s);festCount+=festVal(s);}
+  var lav=dim-wkndCount-festCount, eff=lav-ferCount;
+  var swTarget=Math.max(0, calcTarget(eff*pct/100)-recupero);
+  var targetEmail = document.getElementById('inp-email') ? document.getElementById('inp-email').value : '';
+  
+  var tbl = "\n--- Dettaglio Giornaliero ---\n";
+  var DOW = ['DOM','LUN','MAR','MER','GIO','VEN','SAB'];
+  for(var d=1; d<=dim; d++) {
+    var dw = DOW[new Date(y, m, d).getDay()];
+    var dstr = (d<10?'0'+d:d);
+    var label = "Lavorativo std";
+    var ns = dayState[mk(y,m,d)];
+    var isFest = ns === 'fest-full' || ns === 'fest-half';
+    
+    if(isFest) label = "Festivita'";
+    else if(isWk(y,m,d)) label = "Weekend";
+    else if(ns==='sw-full') label = "SW/Malattia";
+    else if(ns==='sw-half') label = "SW/Mal Mezza";
+    else if(ns==='sw-gg') label = "SW Commessa";
+    else if(ns==='sede') label = "Sede/Trasf.";
+    else if(ns==='fer-full') label = "Ferie/Perm.";
+    else if(ns==='fer-half') label = "Ferie Mezza";
+    
+    tbl += dstr + " " + dw + "   : " + label + "\n";
+  }
+  tbl += "----------------------------\n";
+
+  var subj = encodeURIComponent("Dati Smartworking " + MN[m] + " " + y);
+  var textBody = 
+    "Mese: " + MN[m] + " " + y + "\n\n" +
+    "Giorni mese: " + dim + "\n" +
+    "Giorni lavorativi: " + lav + "\n" +
+    "Festivit\u00e0 extra: " + festCount + "\n" +
+    "Ferie/Permessi (giorni interi): " + ferCount + "\n\n" +
+    "Lavorabili effettivi: " + eff + "\n" +
+    "Percentuale concordata: " + pct + "%\n" +
+    "Giorni di recupero inseriti: " + recupero + "\n" +
+    "Giorni SW spettanti (target): " + swTarget + "\n\n" +
+    "Giorni SW usati: " + swCount + "\n" +
+    "Smartworking rimanente: " + (Math.round((swTarget-swCount)*10)/10) + "\n" +
+    tbl;
+
+  var minBody = encodeURIComponent(
+    "Mese: " + MN[m] + " " + y + "\n\n" +
+    "Giorni mese: " + dim + "\n" +
+    "Lavorativi: " + lav + "\n" +
+    "Festivit\u00e0: " + festCount + "\n" +
+    "Ferie/Permessi: " + ferCount + "\n" +
+    "Lavorabili effettivi: " + eff + "\n" +
+    "SW usufruiti/Totali: " + swCount + "/" + swTarget + "\n"
+  );
+
+  document.getElementById('btn-mail').innerText = "Copiato!";
+  setTimeout(function(){ document.getElementById('btn-mail').innerText = "Invia Email"; }, 3000);
+
+  if(navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(textBody).then(()=>{
+       window.location.href = "mailto:" + targetEmail + "?subject=" + subj + "&body=" + minBody;
+    });
+  } else {
+     var ta = document.createElement('textarea');
+     ta.value = textBody;
+     document.body.appendChild(ta);
+     ta.select();
+     document.execCommand('copy');
+     document.body.removeChild(ta);
+     window.location.href = "mailto:" + targetEmail + "?subject=" + subj + "&body=" + minBody;
+  }
+}
+
+function resetFilters(initOnly) {
+  var d = new Date();
+  var y = d.getFullYear();
+  var m = (d.getMonth() + 1).toString().padStart(2, '0');
+  var es = document.getElementById('filter-start');
+  var ee = document.getElementById('filter-end');
+  if (es) es.value = y + '-01';
+  if (ee) ee.value = y + '-' + m;
+  if (!initOnly) renderHome();
+}
+
+resetFilters(true);
+setMode('sw-full');renderLegend();render(); showTab('home');
+
+</script>
+
+<!-- FIREBASE AUTH + FIRESTORE -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc, setDoc }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDyaBC_fpdJn49I3bW-lmJfGJfe_m7PntE",
+    authDomain: "smartworkingcalculator.firebaseapp.com",
+    projectId: "smartworkingcalculator",
+    storageBucket: "smartworkingcalculator.firebasestorage.app",
+    messagingSenderId: "10080577929",
+    appId: "1:10080577929:web:867d29f1b976b92c25d958",
+    measurementId: "G-R9VSG448S9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const provider = new GoogleAuthProvider();
+
+  let currentUser = null;
+  let saveTimeout = null;
+
+  // Salva tutti i dati utente su Firestore (debounced 1.5s)
+  window.saveData = function() {
+    if (!currentUser) return;
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(async () => {
+      try {
+        const ref = doc(db, 'users', currentUser.uid);
+        await setDoc(ref, {
+          dayState: window.dayState || {},
+          lockedMonths: window.lockedMonths || {},
+          monthSettings: window.monthSettings || {},
+          theme: window.currentTheme || 'lotr',
+          updatedAt: new Date().toISOString()
+        });
+      } catch(e) {
+        console.error('Errore salvataggio:', e);
+      }
+    }, 1500);
+  };
+
+  // Carica i dati utente da Firestore
+  async function loadData(uid) {
+    try {
+      const ref = doc(db, 'users', uid);
+      const snap = await getDoc(ref);
+      if (snap.exists()) {
+        const data = snap.data();
+        if (data.dayState) window.dayState = data.dayState;
+        if (data.lockedMonths) window.lockedMonths = data.lockedMonths;
+        if (data.monthSettings) window.monthSettings = data.monthSettings;
+        if (data.theme) {
+          window.currentTheme = data.theme;
+          document.getElementById('root').className = 't-' + data.theme;
+          const sel = document.getElementById('theme-select');
+          if (sel) sel.value = data.theme;
+          // aggiorna testi separatori in base al tema
+          const s1 = document.getElementById('sep1');
+          const s2 = document.getElementById('sep2');
+          const ml = document.getElementById('mode-label');
+          if (data.theme === 'cyberpunk') {
+            if(s1) s1.textContent = 'COMPUTO GIORNI';
+            if(s2) s2.textContent = 'CALCOLO SMARTWORKING';
+            if(ml) ml.textContent = 'MODALITA SELEZIONE:';
+          } else if (data.theme === 'lotr') {
+            if(s1) s1.innerHTML = '&#9670; Computo dei Giorni';
+            if(s2) s2.innerHTML = '&#9670; Il Cammino dello Smartworking';
+            if(ml) ml.innerHTML = '&#9670; Scegli il Destino del Giorno:';
+          } else {
+            if(s1) s1.innerHTML = '&#9654; Computo giorni';
+            if(s2) s2.innerHTML = '&#9654; Calcolo smartworking';
+            if(ml) ml.innerHTML = '&#9881; Seleziona modalit&#224;:';
+          }
+        }
+      }
+    } catch(e) {
+      console.error('Errore caricamento:', e);
+    }
+    // Ripristina impostazioni del mese corrente nei campi
+    if (typeof restoreSettingsToDOM === 'function') restoreSettingsToDOM();
+    if (typeof renderLegend === 'function') renderLegend();
+    if (typeof render === 'function') render();
+    if (typeof renderHome === 'function') renderHome();
+  }
+
+  window.googleLogin = () => {
+    signInWithPopup(auth, provider).catch(err => {
+      alert('Errore login: ' + err.message);
+    });
+  };
+
+  window.googleLogout = () => {
+    signOut(auth);
+  };
+
+  onAuthStateChanged(auth, async (user) => {
+    const loginScreen = document.getElementById('login-screen');
+    const root = document.getElementById('root');
+    const topbar = document.getElementById('topbar');
+
+    if (user) {
+      currentUser = user;
+      loginScreen.style.display = 'none';
+      topbar.classList.add('visible');
+      const avatar = document.getElementById('user-avatar');
+      if (user.photoURL) { avatar.src = user.photoURL; avatar.style.display = 'block'; }
+      else { avatar.style.display = 'none'; }
+      document.getElementById('user-name').textContent = user.displayName || '';
+      document.getElementById('user-email').textContent = user.email || '';
+      // Carica i dati PRIMA di mostrare l'app
+      await loadData(user.uid);
+      root.style.display = 'block';
+    } else {
+      currentUser = null;
+      loginScreen.style.display = 'flex';
+      root.style.display = 'none';
+      topbar.classList.remove('visible');
+      // Reset stato locale al logout
+      window.dayState = {};
+      window.lockedMonths = {};
+      window.monthSettings = {};
+    }
+  });
+</script>
+</body>
+</html>
